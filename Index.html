@@ -1,0 +1,281 @@
+index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080d18">
+<title>SERPULSE — SEO Intelligence Platform</title>
+<meta name="description" content="Analyze website SEO, discover technical issues and explore SEO performance with SERPULSE.">
+<style>
+:root{
+  --bg:#080d18;--panel:#111a2b;--line:#26334a;
+  --text:#f4f7ff;--muted:#a5b2c7;--green:#26e6a0;
+  --blue:#42a5ff;--purple:#a779ff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+font-family:Arial,Helvetica,sans-serif}
+button,input{font:inherit}
+button,a{cursor:pointer}
+a{color:var(--blue);text-decoration:none}
+header{height:70px;border-bottom:1px solid var(--line);
+display:flex;align-items:center;justify-content:space-between;
+padding:0 5%;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;
+font-size:22px;font-weight:800;letter-spacing:3px}
+.logo{width:39px;height:39px;flex-shrink:0}
+nav{display:flex;gap:20px;font-size:13px}
+nav a{color:var(--muted)}
+main{max-width:1120px;margin:auto;padding:32px 20px}
+.hero{text-align:center;padding:30px 0 25px}
+.hero h1{font-size:clamp(30px,5vw,48px);margin:8px 0 14px}
+.gradient{background:linear-gradient(90deg,var(--green),var(--blue),var(--purple));
+-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:620px;margin:0 auto;color:var(--muted);line-height:1.7}
+.search{display:flex;max-width:720px;margin:27px auto 12px;
+gap:10px;padding:8px;background:var(--panel);
+border:1px solid var(--line);border-radius:14px}
+.search input{flex:1;min-width:0;background:transparent;border:0;
+outline:0;color:var(--text);padding:12px}
+.btn{background:linear-gradient(110deg,#1788f8,#8556f6);
+color:white;border:0;padding:14px 20px;border-radius:9px;font-weight:bold}
+.btn:disabled{opacity:.6}
+#message{font-size:13px;color:var(--muted);min-height:20px}
+.section-title{margin:30px 0 15px;font-size:20px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.card,.panel{background:var(--panel);border:1px solid var(--line);
+border-radius:13px;padding:18px;min-width:0}
+.label{font-size:13px;color:var(--muted)}
+.value{font-size:28px;font-weight:bold;margin:15px 0 9px}
+.note{font-size:11px;color:#8fa2bd;line-height:1.5}
+.green{color:var(--green)}.blue{color:var(--blue)}
+.purple{color:var(--purple)}
+.layout{display:grid;grid-template-columns:1.2fr .8fr;gap:15px;margin-top:16px}
+.panel h2{font-size:18px;margin:0 0 14px}
+li{margin:12px 0;color:#d6dfed;line-height:1.6;overflow-wrap:anywhere}
+#results{padding-left:20px}
+.secondary{background:#19263b;color:var(--text);border:1px solid var(--line);
+padding:11px 14px;border-radius:8px}
+footer{border-top:1px solid var(--line);padding:25px 20px;
+text-align:center;color:var(--muted);font-size:12px;line-height:1.8}
+@media(max-width:750px){
+ nav{gap:11px;overflow:auto}nav a{white-space:nowrap}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .layout{grid-template-columns:1fr}
+ header{padding:0 14px}.brand{font-size:18px;letter-spacing:2px}
+ main{padding:20px 13px}
+}
+@media(max-width:390px){
+ nav{display:none}.search{flex-direction:column}
+ .search input{min-height:45px}.btn{width:100%}
+ .value{font-size:24px}.card{padding:13px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 100 100" role="img" aria-label="SERPULSE logo">
+      <defs>
+        <linearGradient id="pulse" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stop-color="#26e6a0"/>
+          <stop offset="55%" stop-color="#28a9f9"/>
+          <stop offset="100%" stop-color="#a779ff"/>
+        </linearGradient>
+      </defs>
+      <path d="M12 82 L43 18 Q50 4 58 19 L90 82"
+        fill="none" stroke="url(#pulse)" stroke-width="13"
+        stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M30 79 V65 H40 V79 M47 79 V50 H57 V79 M64 79 V36 H74 V79"
+        fill="#26e6a0"/>
+    </svg>
+    <span>SERPULSE</span>
+  </div>
+  <nav>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#audit">Site Audit</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="gradient" style="font-weight:bold;letter-spacing:3px;font-size:12px">
+      ANALYZE. OPTIMIZE. OUTRANK.
+    </div>
+    <h1>Your Website's <span class="gradient">SEO Intelligence</span></h1>
+    <p>Explore technical SEO signals, understand your website and discover opportunities to improve your search performance.</p>
+
+    <form class="search" id="searchForm">
+      <input id="siteUrl" type="text" placeholder="Enter domain (e.g. example.com)"
+        aria-label="Website domain" required>
+      <button class="btn" id="analyzeBtn" type="submit">Analyze Website</button>
+    </form>
+    <div id="message" role="status">Enter a website URL to start an analysis.</div>
+  </section>
+
+  <section id="dashboard">
+    <h2 class="section-title">SEO Metrics Dashboard</h2>
+    <div class="grid">
+      <article class="card">
+        <div class="label">Domain Authority</div>
+        <div class="value green">—</div>
+        <div class="note">Moz data connection required</div>
+      </article>
+      <article class="card">
+        <div class="label">Domain Rating</div>
+        <div class="value blue">—</div>
+        <div class="note">Ahrefs data connection required</div>
+      </article>
+      <article class="card">
+        <div class="label">Trust Flow</div>
+        <div class="value purple">—</div>
+        <div class="note">Majestic data connection required</div>
+      </article>
+      <article class="card">
+        <div class="label">Citation Flow</div>
+        <div class="value" style="color:#ffbd59">—</div>
+        <div class="note">Majestic data connection required</div>
+      </article>
+      <article class="card">
+        <div class="label">Organic Traffic</div>
+        <div class="value">—</div>
+        <div class="note">Estimated traffic data required</div>
+      </article>
+      <article class="card">
+        <div class="label">Organic Keywords</div>
+        <div class="value">—</div>
+        <div class="note">Keyword database required</div>
+      </article>
+      <article class="card">
+        <div class="label">Backlinks</div>
+        <div class="value">—</div>
+        <div class="note">Backlink database required</div>
+      </article>
+      <article class="card">
+        <div class="label">Referring Domains</div>
+        <div class="value">—</div>
+        <div class="note">Backlink database required</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="layout" id="audit">
+    <article class="panel">
+      <h2>Technical SEO Audit</h2>
+      <p class="note">This browser-based audit needs the target site to allow cross-origin access. Some sites block it.</p>
+      <ul id="results">
+        <li>Enter a URL above to check its accessible HTML.</li>
+      </ul>
+      <button type="button" class="secondary" id="clearBtn">Clear results</button>
+    </article>
+
+    <article class="panel">
+      <h2>Website Performance</h2>
+      <p style="color:var(--muted);line-height:1.7;font-size:14px">
+        Check loading speed and performance using Google's PageSpeed Insights service.
+      </p>
+      <a id="speedLink" href="https://pagespeed.web.dev/" target="_blank"
+         rel="noopener noreferrer">Open PageSpeed Insights ↗</a>
+      <hr style="border:0;border-top:1px solid var(--line);margin:20px 0">
+      <h2>SEO Improvement Plan</h2>
+      <p class="note">Find missing metadata, review headings and inspect performance before prioritizing improvements.</p>
+    </article>
+  </section>
+
+  <section class="panel" id="about" style="margin-top:16px">
+    <h2>About SERPULSE</h2>
+    <p style="color:var(--muted);line-height:1.8;font-size:14px">
+      SERPULSE is an SEO analysis platform concept designed to help website owners
+      understand technical SEO and search performance. Provider metrics are shown
+      only when a suitable data source is connected.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="brand" style="justify-content:center;margin-bottom:10px">
+    <span class="gradient">SERPULSE</span>
+  </div>
+  Analyze. Optimize. Outrank.<br>
+  SEO insights for website owners.
+</footer>
+
+<script>
+const form = document.getElementById('searchForm');
+const input = document.getElementById('siteUrl');
+const message = document.getElementById('message');
+const results = document.getElementById('results');
+const speedLink = document.getElementById('speedLink');
+const button = document.getElementById('analyzeBtn');
+
+function addResult(text) {
+  const li = document.createElement('li');
+  li.textContent = text;
+  results.appendChild(li);
+}
+
+form.addEventListener('submit', async function(event) {
+  event.preventDefault();
+
+  let url;
+  try {
+    let raw = input.value.trim();
+    if (!/^https?:\/\//i.test(raw)) raw = 'https://' + raw;
+    url = new URL(raw);
+    if (!['http:', 'https:'].includes(url.protocol) ||
+        !url.hostname.includes('.') ||
+        url.hostname === 'localhost') throw new Error('Invalid URL');
+  } catch {
+    message.textContent = 'Please enter a valid public website domain.';
+    return;
+  }
+
+  results.replaceChildren();
+  speedLink.href = 'https://pagespeed.web.dev/analysis?url=' +
+    encodeURIComponent(url.href);
+  message.textContent = 'Trying to inspect the website HTML...';
+  button.disabled = true;
+
+  try {
+    const response = await fetch(url.href, {mode: 'cors'});
+    if (!response.ok) throw new Error('Website response unavailable');
+
+    const html = await response.text();
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const title = doc.querySelector('title')?.textContent.trim() || '';
+    const description =
+      doc.querySelector('meta[name="description"]')?.content.trim() || '';
+    const h1Count = doc.querySelectorAll('h1').length;
+    const h2Count = doc.querySelectorAll('h2').length;
+    const canonical = doc.querySelector('link[rel="canonical"]')?.href || '';
+    const robots = doc.querySelector('meta[name="robots"]')?.content || 'Not specified';
+
+    addResult('Page title: ' + (title || 'Missing'));
+    addResult('Meta description: ' + (description || 'Missing'));
+    addResult('H1 heading count: ' + h1Count);
+    addResult('H2 heading count: ' + h2Count);
+    addResult('Canonical tag: ' + (canonical || 'Not found'));
+    addResult('Robots meta: ' + robots);
+
+    message.textContent = 'HTML inspection completed. This is not a full SEO crawl.';
+  } catch {
+    addResult('Browser could not read this website. Its CORS policy or network may block access.');
+    addResult('No DA, DR, Trust Flow, Citation Flow or organic traffic data was retrieved.');
+    message.textContent = 'Direct browser analysis unavailable. Try the PageSpeed report instead.';
+  } finally {
+    button.disabled = false;
+  }
+});
+
+document.getElementById('clearBtn').addEventListener('click', function() {
+  results.replaceChildren();
+  addResult('Enter a URL above to start another inspection.');
+  message.textContent = 'Results cleared.';
+});
+</script>
+</body>
+</html>
